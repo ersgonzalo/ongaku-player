@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Ongaku Player</title>
+		<script src="scripts/bundle.js"></script>
+		<script src="scripts/angular.js"></script>
+		<script src="scripts/flac.js"></script>
+		<script src="scripts/app.js"></script>
+		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="style/style.css">
+	</head>
+
+	<body ng-app="OngakuPlay" ng-controller="MainController">
+		<div class="navbar navbar-default"><h2>Ongaku Player</h2></div>
+		<audio id="audiotrack" ng-src="{{currentSong}}"></audio>
+		<pre>{{currentSong}}</pre>
+		<pre>{{songNowData}}</pre>
+		<div class="play" ng-click="playAudio()"></div>
+		<div id="playerControls" class="text-center"><h3>
+			<i ng-click="backTrack()" class="glyphicon glyphicon-backward"></i>
+			<i ng-click="playAudio()" ng-class="{'glyphicon-play': isPlaying, 'glyphicon-pause': !isPlaying}" class="glyphicon glyphicon-play"></i>
+			<i ng-click="advanceTrack()" class="glyphicon glyphicon-forward"></i>
+		</h3> {{songTime}}</div>
+
+		<div class="panel panel-primary">
+		<div class="panel-heading"><h5>List of Songs</h5></div>
+			<div class="panel-body">
+				<table class="table">
+					<tr ng-repeat="song in songs" ng-click="playThisSong(song)"><td>{{song}}</td></tr>
+				</table>	
+			</div>
+		</div>
+	</body>
+
+</html>

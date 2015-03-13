@@ -1,0 +1,31 @@
+body{
+	background-color: white;
+}
+
+.navbar{
+	background-color: #673ab7;
+	position: relative;
+	border-radius: 0;
+}
+.navbar > h2{
+	color: white;
+	margin: 20px;
+}
+.play{
+	background: url('images/play.svg') no-repeat;
+}
+.pause{
+	background: url('images/pause.svg') no-repeat;
+}
+
+#playerControls > h3 > .glyphicon{
+	color: #673AB7;
+}
+
+.navbar > h2:hover {
+  content: '音楽プレーヤ';
+}
+
+.panel-primary > .panel-heading{
+	background-color: #4527A0;
+}
