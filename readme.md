@@ -8,8 +8,13 @@ To Dos:
 - Build as a Firefox Extension?
 - Save & Export Library Configuration
 
+Possibly to Use:
+------------
+- [audio-metadata](https://www.npmjs.com/package/audio-metadata)
+- [Browserify](https://github.com/substack/node-browserify)
+- [MusicMetaData](https://github.com/leetreveil/musicmetadata)
+- [Flac.js and Aurora](http://audiocogs.org/articles/2012/06/15/flac-and-aurora/)
+
 Special thanks to:
 ------------
 - [Stack Overflow](http://stackoverflow.com/) *I'd wouldn't be where I am now with you guys!*
-- [MusicMetaData](https://github.com/leetreveil/musicmetadata)
-- [Browserify](https://github.com/substack/node-browserify)
