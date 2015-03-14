@@ -5,23 +5,36 @@
 		<title>Ongaku Player</title>
 		<script src="scripts/bundle.js"></script>
 		<script src="scripts/angular.js"></script>
+		<script src="scripts/jquery.js"></script>
 		<script src="scripts/flac.js"></script>
 		<script src="scripts/app.js"></script>
 		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<link rel="stylesheet" type="text/css" href="style/style.css">
 	</head>
 
 	<body ng-app="OngakuPlay" ng-controller="MainController">
 		<div class="navbar navbar-default"><h2>Ongaku Player</h2></div>
-		<audio id="audiotrack" ng-src="{{currentSong}}"></audio>
-		<pre>{{currentSong}}</pre>
-		<pre>{{songNowData}}</pre>
-		<div class="play" ng-click="playAudio()"></div>
+		<audio id="audiotrack" preload="metadata" ng-src="{{currentSong}}"></audio>
+
+		<div id="nowPlaying" class="panel panel-primary">
+			<div class="panel panel-heading">Now playing:</div>
+			<div class="panel panel-body">{{currentSong}}</div>
+		</div>
+		<pre>
+			Song Data: {{songNowData}} <!-- Will eventually output tag data -->
+			Duration: {{songTime}}
+		</pre>
+
 		<div id="playerControls" class="text-center"><h3>
-			<i ng-click="backTrack()" class="glyphicon glyphicon-backward"></i>
-			<i ng-click="playAudio()" ng-class="{'glyphicon-play': isPlaying, 'glyphicon-pause': !isPlaying}" class="glyphicon glyphicon-play"></i>
-			<i ng-click="advanceTrack()" class="glyphicon glyphicon-forward"></i>
-		</h3> {{songTime}}</div>
+			<i ng-click="stopTrack()" class="fa fa-stop"></i>
+			<i ng-click="backTrack()" class="fa fa-backward"></i>
+			<i ng-click="playTrack()" ng-class="{'fa-play': isPlaying, 'fa-pause': !isPlaying}" class="fa fa-play"></i>
+			<i ng-click="advanceTrack()" class="fa fa-forward"></i>
+			<i ng-click="loopTrack()" class="fa fa-retweet"></i>
+			</h3>
+			<input type="range" step="any" id="seekbar" class="seekbar"></input>
+		</div>
 
 		<div class="panel panel-primary">
 		<div class="panel-heading"><h5>List of Songs</h5></div>
