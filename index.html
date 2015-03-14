@@ -23,7 +23,7 @@
 		</div>
 		<pre>
 			Song Data: {{songNowData}} <!-- Will eventually output tag data -->
-			Duration: {{songTime}}
+			Time: {{currentSongTime}}/{{songTime}}
 		</pre>
 
 		<div id="playerControls" class="text-center"><h3>
@@ -34,6 +34,7 @@
 			<i ng-click="loopTrack()" class="fa fa-retweet"></i>
 			</h3>
 			<input type="range" step="any" id="seekbar" class="seekbar"></input>
+			<input type=range min=0 max=1 step="0.05" id="volume" orient="vertical">
 		</div>
 
 		<div class="panel panel-primary">

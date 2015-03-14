@@ -1,4 +1,4 @@
-Building this project during my Personal Hackathon time at Fullstack Academy. At the moment, is a website that will play some various local music. At the moment...functional enough. At the end, it will hopefully replicate foobar2000 functionality!
+Building this project during my Personal Hackathon time at Fullstack Academy. Is a webapp that will play some various local music. At the moment...functional enough. At the end, it will hopefully replicate foobar2000 functionality!
 
 To Dos:
 ------------
@@ -20,11 +20,11 @@ Possibly to Use:
 - [Browserify](https://github.com/substack/node-browserify)
 - [MusicMetaData](https://github.com/leetreveil/musicmetadata)
 - [Flac.js and Aurora](http://audiocogs.org/articles/2012/06/15/flac-and-aurora/)
-- [Range Style Generation](http://danielstern.ca/range.css/#/)
+- [Range Tag Style Generation](http://danielstern.ca/range.css/#/)
 
 Special thanks to:
 ------------
-- Chris for helping me get started from the very beginning.
+- Chris for helping me get brainstorm and learn more with my idea.
 - [Stack Overflow](http://stackoverflow.com/)
 - [Google](https://github.com/google/material-design-icons) for their material design icons
 - [Bootstrap](http://getbootstrap.com/)

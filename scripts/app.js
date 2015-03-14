@@ -4,9 +4,14 @@ app.controller('MainController', function($scope){
 	// console.log("Loaded! :)");
 
 	var nowIndex = 0;
+	$scope.currentSongTime = "0:00";
+	$scope.songTime = "0:00";
+
 	var music = document.getElementById('audiotrack');
 	var seekbar = document.getElementById('seekbar');
 	seekbar.value = 0;
+	var volumeControl = document.getElementById('volume');
+	volumeControl.value = 0.5;
 
 	music.addEventListener("ended", function(){
 		music.currentTime = 0;
@@ -24,23 +29,33 @@ app.controller('MainController', function($scope){
 	var seekAudio = function() {
         music.currentTime = seekbar.value;
     }
+
+  //   music.on('timeupdate', function(){
+		// // $scope.currentSongTime = seekbar.value;
+		// console.log(seekbar.value);
+  //   });
+
 	var updateUI = function(){
 		var lastBuffered = music.buffered.end(music.buffered.length-1);
 		seekbar.min = music.startTime;
 		seekbar.max = lastBuffered;
 		seekbar.value = music.currentTime;
+		$scope.currentSongTime = timeConverter(music.currentTime);
+		$scope.$digest();
     }
     seekbar.onchange = seekAudio;
     music.ontimeupdate = updateUI;
 
     var timeConverter = function(songDuration){
-    	if (songDuration < 60)
-    		return Math.ceil(songDuration + 1) + " seconds"
-    	else{
-    		var mins = parseInt(songDuration/60) + " minutes and ";
-    		var secs = parseInt(songDuration % 60) + " seconds";
-    		return mins + secs;
-    	}
+    	// if (songDuration < 60)
+    	// 	 Math.ceil(songDuration + 1)
+    	// else{
+    	var mins = parseInt(songDuration/60);
+    	var secs = parseInt((songDuration+1) % 60);
+		if(secs < 10)
+			secs = "0" + secs;
+    	// }
+    	return mins +":"+ secs;
     }
 
     var getSongTime = function(){
@@ -69,7 +84,6 @@ app.controller('MainController', function($scope){
 
 	$scope.currentSong = $scope.songs[nowIndex];
 
-
 	$scope.playTrack = function() {
 		getSongTime();
 		if (music.paused) {
@@ -92,6 +106,7 @@ app.controller('MainController', function($scope){
 		seekbar.value = 0;
 		$scope.isPlaying = true;
 		getSongTime();
+		// $scope.$digest();
 		// var parsers = mm(fs.createReadStream($scope.currentSong), function(err, metadata){
 		// 	if(err) throw err;
 		// 	$scope.songNowData = metadata;
