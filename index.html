@@ -5,7 +5,7 @@
 		<title>ongaku player</title>
 		<script src="scripts/bundle.js"></script>
 		<script src="scripts/angular.js"></script>
-		<!-- <script src="scripts/jquery.js"></script> -->
+		<script src="scripts/jquery.js"></script>
 		<!-- <script src="scripts/flac.js"></script> -->
 		<script src="scripts/app.js"></script>
 		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
@@ -41,14 +41,17 @@
 
 			</div>
 
-			<div class="panel panel-primary">
+			<div class="panel panel-primary" id="playlist">
 			<div class="panel-heading"><h4>List of Song's Paths</h4></div>
 				<div class="panel-body">
 					<table class="table">
-						<tr ng-repeat="song in songs" ng-click="playThisSong(song)"><td>{{$index+1}}</td><td id="{{$index1}}">{{song}}</td></tr>
+						<tr ng-repeat="song in songs" ng-click="playThisSong(song)"><td>{{$index+1}}</td><td id="{{$index}}">{{song}}</td></tr>
 					</table>	
 				</div>
 			</div>
+			<form class="form" name="addSongForm" ng-submit="addSongForm.$valid && addFileQueue()">
+			<input ng-model="filepath" type="text" style="width: 70%;" required><button class="btn" type="submit">Add Filepath</button>
+			</form>
 		</div>
 	</body>
 

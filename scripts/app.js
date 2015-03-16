@@ -20,7 +20,9 @@ app.controller('MainController', function($scope){
 	music.ondurationchange = setUpSeekbar;
 	music.addEventListener("durationchange", setUpSeekbar);
 	music.addEventListener("timeupdate", updateUI);
-	volumeControl.addEventListener("change", seekVolume);
+	$('#volume').on("change", function(){
+		music.volume =  volumeControl.value;
+	});
 
 	var setUpSeekbar = function(){
 		seekbar.min = music.startTime;
@@ -119,9 +121,8 @@ app.controller('MainController', function($scope){
 		else	
 			nowIndex++;
 		$scope.currentSong = $scope.songs[nowIndex];
-		setSongInfo();
 		$scope.stopTrack();
-		// $scope.isPlaying = true;
+		setSongInfo();
 	}
 
 	$scope.backTrack = function(){
@@ -130,18 +131,15 @@ app.controller('MainController', function($scope){
 		else	
 			nowIndex--;
 		$scope.currentSong = $scope.songs[nowIndex];
-		setSongInfo();
 		$scope.stopTrack();
-		// $scope.isPlaying = true;
+		setSongInfo();
 	}
 
 	$scope.loopTrack = function(){
 		if(music.loop){
 			music.loop = false;
-			// $('.fa-retweet').css('background-color: #673AB7');
 		} else{
 			music.loop = true;
-			// $('.fa-retweet').css('background-color: #F44336');
 		}
 	}
 
@@ -158,5 +156,10 @@ app.controller('MainController', function($scope){
 	}
 
 	setSongInfo();
+
+	$scope.addFileQueue = function(){
+		$scope.songs.push($scope.filepath);
+		console.log($scope.songs.length);
+	}
 
 });

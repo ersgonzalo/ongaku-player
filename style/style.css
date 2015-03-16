@@ -18,17 +18,13 @@ pre{
 h3 > .fa{
 	color: #673AB7;
 }
+input{
+	margin: 10px 10px 0 0;
+}
 
 
-/*.navbar > h1:hover {
-  content: '';
-  display: none;
-}*/
+/*div.navbar:hover:before {content:'音楽プレーヤ';}*/
 
-/*.navbar > h1:hover:after {
-  content: '音楽プレーヤ';
-  display: none;
-}*/
 
 .panel{
 	margin-bottom: 0;

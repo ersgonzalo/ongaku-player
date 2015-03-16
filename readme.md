@@ -13,6 +13,7 @@ To Dos:
 - Build as a Firefox Extension?
 - Save & Export Library Configuration
 - Draggable Elements?
+- Read from Dropbox/Google Drive?
 
 Possibly to Use:
 ------------
