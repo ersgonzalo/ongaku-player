@@ -27,11 +27,11 @@
 		</pre>
 
 		<div id="playerControls" class="text-center"><h3>
-			<i ng-click="stopTrack()" class="fa fa-stop"></i>
-			<i ng-click="backTrack()" class="fa fa-backward"></i>
-			<i ng-click="playTrack()" ng-class="{'fa-play': isPlaying, 'fa-pause': !isPlaying}" class="fa fa-play"></i>
-			<i ng-click="advanceTrack()" class="fa fa-forward"></i>
-			<i ng-click="loopTrack()" class="fa fa-retweet"></i>
+			<i ng-click="stopTrack()" class="btn fa fa-stop"></i>
+			<i ng-click="backTrack()" class="btn fa fa-backward"></i>
+			<i ng-click="playTrack()" ng-class="{'fa-play': isPlaying, 'fa-pause': !isPlaying}" class="btn fa fa-play"></i>
+			<i ng-click="advanceTrack()" class="btn fa fa-forward"></i>
+			<i ng-click="loopTrack()" class="btn fa fa-retweet"></i>
 			</h3>
 			<input type="range" step="any" id="seekbar" class="seekbar"></input>
 			<input type=range min=0 max=1 step="0.05" id="volume" orient="vertical">
@@ -41,7 +41,7 @@
 		<div class="panel-heading"><h5>List of Songs</h5></div>
 			<div class="panel-body">
 				<table class="table">
-					<tr ng-repeat="song in songs" ng-click="playThisSong(song)"><td>{{song}}</td></tr>
+					<tr ng-repeat="song in songs" ng-click="playThisSong(song)"><td id="{{$index}}">{{song}}</td></tr>
 				</table>	
 			</div>
 		</div>

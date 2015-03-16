@@ -1,7 +1,6 @@
 var app = angular.module('OngakuPlay', []);
 
 app.controller('MainController', function($scope){
-	// console.log("Loaded! :)");
 
 	var nowIndex = 0;
 	$scope.currentSongTime = "0:00";
@@ -29,11 +28,6 @@ app.controller('MainController', function($scope){
 	var seekAudio = function() {
         music.currentTime = seekbar.value;
     }
-
-  //   music.on('timeupdate', function(){
-		// // $scope.currentSongTime = seekbar.value;
-		// console.log(seekbar.value);
-  //   });
 
 	var updateUI = function(){
 		var lastBuffered = music.buffered.end(music.buffered.length-1);
@@ -103,6 +97,7 @@ app.controller('MainController', function($scope){
 
 	$scope.playThisSong = function(song){
 		$scope.currentSong = song;
+		nowIndex = event.target.id;
 		seekbar.value = 0;
 		$scope.isPlaying = true;
 		getSongTime();
@@ -114,13 +109,19 @@ app.controller('MainController', function($scope){
 	}
 
 	$scope.advanceTrack = function(){
-		console.log("advanced");
-		nowIndex++;
+		if(nowIndex > $scope.songs.length - 1)
+			nowIndex = 0;
+		else	
+			nowIndex++;
+		$scope.currentSong = $scope.songs[nowIndex];
 	}
 
 	$scope.backTrack = function(){
-		console.log("backwards");
-		nowIndex--;
+		if(nowIndex == 0)
+			nowIndex = $scope.songs.length;
+		else	
+			nowIndex--;
+		$scope.currentSong = $scope.songs[nowIndex];
 	}
 
 	$scope.loopTrack = function(){
