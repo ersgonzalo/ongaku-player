@@ -10,7 +10,7 @@ app.controller('MainController', function($scope){
 	var seekbar = document.getElementById('seekbar');
 	seekbar.value = 0;
 	var volumeControl = document.getElementById('volume');
-	volumeControl.value = 0.5;
+	music.volume = 0.5;
 
 	music.addEventListener("ended", function(){
 		music.currentTime = 0;
@@ -20,11 +20,13 @@ app.controller('MainController', function($scope){
 	music.ondurationchange = setUpSeekbar;
 	music.addEventListener("durationchange", setUpSeekbar);
 	music.addEventListener("timeupdate", updateUI);
+	volumeControl.addEventListener("change", seekVolume);
 
 	var setUpSeekbar = function(){
 		seekbar.min = music.startTime;
 		seekbar.max = music.startTime + music.duration;
 	}
+
 	var seekAudio = function() {
         music.currentTime = seekbar.value;
     }
@@ -37,18 +39,20 @@ app.controller('MainController', function($scope){
 		$scope.currentSongTime = timeConverter(music.currentTime);
 		$scope.$digest();
     }
+
+	var seekVolume = function() {
+		console.log("I HAVE BEEN USED!");
+        music.volume = volumeControl.value;
+    }
+
     seekbar.onchange = seekAudio;
     music.ontimeupdate = updateUI;
 
     var timeConverter = function(songDuration){
-    	// if (songDuration < 60)
-    	// 	 Math.ceil(songDuration + 1)
-    	// else{
     	var mins = parseInt(songDuration/60);
     	var secs = parseInt((songDuration+1) % 60);
 		if(secs < 10)
 			secs = "0" + secs;
-    	// }
     	return mins +":"+ secs;
     }
 
@@ -71,12 +75,17 @@ app.controller('MainController', function($scope){
 		"/media/eric/82C48964C4895AF51/Users/Light/Music/Persona 4 Chime.mp3",
 		"/media/eric/82C48964C4895AF51/Users/Light/Music/04 - Everything Is Under Control (DJ Kentaro remix).mp3",
 		"/media/eric/82C48964C4895AF51/Users/Light/Music/The Strokes/[2003] Room On Fire/02 - Reptilia.mp3",
+		"/media/eric/82C48964C4895AF51/Users/Light/Music/Stones/The Black Keys/[2011] El Camino/03 - Gold On The Ceiling.mp3",
 		"/media/eric/82C48964C4895AF51/Users/Light/Music/日本の音楽/goose house/光るなら - EP/01 光るなら.m4a",
 		"/media/eric/82C48964C4895AF51/Users/Light/Music/Anime/坂道のアポロン/02. Chick's Diner.mp3",
 		"/media/eric/82C48964C4895AF51/Users/Light/Music/한국 음악/싸이 - 강남스타일.mp3"
 	];
 
 	$scope.currentSong = $scope.songs[nowIndex];
+	
+	var setSongInfo = function(){
+		$scope.songNowData = $scope.currentSong.substr($scope.currentSong.lastIndexOf('/') + 1);
+	}
 
 	$scope.playTrack = function() {
 		getSongTime();
@@ -97,15 +106,11 @@ app.controller('MainController', function($scope){
 
 	$scope.playThisSong = function(song){
 		$scope.currentSong = song;
+		$scope.songNowData = song.substr(song.lastIndexOf('/') + 1);
 		nowIndex = event.target.id;
 		seekbar.value = 0;
 		$scope.isPlaying = true;
 		getSongTime();
-		// $scope.$digest();
-		// var parsers = mm(fs.createReadStream($scope.currentSong), function(err, metadata){
-		// 	if(err) throw err;
-		// 	$scope.songNowData = metadata;
-		// });
 	}
 
 	$scope.advanceTrack = function(){
@@ -114,6 +119,9 @@ app.controller('MainController', function($scope){
 		else	
 			nowIndex++;
 		$scope.currentSong = $scope.songs[nowIndex];
+		setSongInfo();
+		$scope.stopTrack();
+		// $scope.isPlaying = true;
 	}
 
 	$scope.backTrack = function(){
@@ -122,16 +130,33 @@ app.controller('MainController', function($scope){
 		else	
 			nowIndex--;
 		$scope.currentSong = $scope.songs[nowIndex];
+		setSongInfo();
+		$scope.stopTrack();
+		// $scope.isPlaying = true;
 	}
 
 	$scope.loopTrack = function(){
 		if(music.loop){
 			music.loop = false;
-			$('.fa-retweet').css('background-color: #673AB7');
-		}else{
+			// $('.fa-retweet').css('background-color: #673AB7');
+		} else{
 			music.loop = true;
-			$('.fa-retweet').css('background-color: #F44336');
+			// $('.fa-retweet').css('background-color: #F44336');
 		}
 	}
+
+	$scope.mute = function (){
+		if(music.muted)
+			music.muted = false;
+		else
+			music.muted = true;
+	}
+
+	$scope.maxVol = function(){
+		music.muted = false;
+		music.volume = 1;
+	}
+
+	setSongInfo();
 
 });

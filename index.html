@@ -2,47 +2,52 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Ongaku Player</title>
+		<title>ongaku player</title>
 		<script src="scripts/bundle.js"></script>
 		<script src="scripts/angular.js"></script>
-		<script src="scripts/jquery.js"></script>
-		<script src="scripts/flac.js"></script>
+		<!-- <script src="scripts/jquery.js"></script> -->
+		<!-- <script src="scripts/flac.js"></script> -->
 		<script src="scripts/app.js"></script>
 		<link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="style/style.css">
+		<link rel="icon" type="image/ico" href="favicon.ico">
 	</head>
 
 	<body ng-app="OngakuPlay" ng-controller="MainController">
-		<div class="navbar navbar-default"><h2>Ongaku Player</h2></div>
+		<div class="navbar navbar-default"><h1>ongaku player</h1></div>
 		<audio id="audiotrack" preload="metadata" ng-src="{{currentSong}}"></audio>
+		<!-- <div id="belowNav" class="col-xs-9 col-sm-9 col-md-9 col-lg-9"> -->
+		<div id="belowNav">
 
-		<div id="nowPlaying" class="panel panel-primary">
-			<div class="panel panel-heading">Now playing:</div>
-			<div class="panel panel-body">{{currentSong}}</div>
-		</div>
-		<pre>
-			Song Data: {{songNowData}} <!-- Will eventually output tag data -->
-			Time: {{currentSongTime}}/{{songTime}}
-		</pre>
+			<table class="table">
+				<tr><td>Song Data:</td><td>{{songNowData}}</td></tr>
+				<tr><td>Time:</td><td>{{currentSongTime}}/{{songTime}}</td></tr><!-- Will eventually output tag data -->
+			</table>
 
-		<div id="playerControls" class="text-center"><h3>
-			<i ng-click="stopTrack()" class="btn fa fa-stop"></i>
-			<i ng-click="backTrack()" class="btn fa fa-backward"></i>
-			<i ng-click="playTrack()" ng-class="{'fa-play': isPlaying, 'fa-pause': !isPlaying}" class="btn fa fa-play"></i>
-			<i ng-click="advanceTrack()" class="btn fa fa-forward"></i>
-			<i ng-click="loopTrack()" class="btn fa fa-retweet"></i>
-			</h3>
-			<input type="range" step="any" id="seekbar" class="seekbar"></input>
-			<input type=range min=0 max=1 step="0.05" id="volume" orient="vertical">
-		</div>
+			<div id="playerControls" class="text-center"><h3>
+				<i ng-click="stopTrack()" class="btn fa fa-stop"></i>
+				<i ng-click="backTrack()" class="btn fa fa-backward"></i>
+				<i ng-click="playTrack()" ng-class="{'fa-play': isPlaying, 'fa-pause': !isPlaying}" class="btn fa fa-play"></i>
+				<i ng-click="advanceTrack()" class="btn fa fa-forward"></i>
+				<i ng-click="loopTrack()" class="btn fa fa-retweet"></i>
+				</h3>
+				<input type="range" step="any" id="seekbar" class="seekbar"></input>
+				<!-- <input type=range min=0 max=1 step="0.05" id="volume" orient="vertical"> -->
+				<div class="volumeControls">
+					<h3><i class="btn fa fa-volume-off" ng-click="mute()"></i><input type=range min=0 max=1 step="0.05" id="volume" class="seekbar"><i class="btn fa fa-volume-up" ng-click="maxVol()"></i></h3>
+				</div>
 
-		<div class="panel panel-primary">
-		<div class="panel-heading"><h5>List of Songs</h5></div>
-			<div class="panel-body">
-				<table class="table">
-					<tr ng-repeat="song in songs" ng-click="playThisSong(song)"><td id="{{$index}}">{{song}}</td></tr>
-				</table>	
+			</div>
+
+			<div class="panel panel-primary">
+			<div class="panel-heading"><h4>List of Song's Paths</h4></div>
+				<div class="panel-body">
+					<table class="table">
+						<tr ng-repeat="song in songs" ng-click="playThisSong(song)"><td>{{$index+1}}</td><td id="{{$index1}}">{{song}}</td></tr>
+					</table>	
+				</div>
 			</div>
 		</div>
 	</body>
