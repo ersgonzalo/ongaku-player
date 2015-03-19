@@ -1,5 +1,7 @@
 Building this project during my Personal Hackathon time at Fullstack Academy. Is a webapp(?) that will play various local music from your own computer. At the moment...somewhat functional! Built on HTML, CSS, Javascript(lots of Angular.js). At the end, it will hopefully replicate foobar2000 functionality!
 
+![In browser](sampleimage.jpg)
+
 To Dos:
 ------------
 - Refactor all the ugly(Directives, Factories, etc)
