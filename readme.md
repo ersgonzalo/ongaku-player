@@ -2,7 +2,17 @@ Building this project during my Personal Hackathon time at Fullstack Academy. Is
 
 ![In browser](sampleimage.jpg)
 
-To Dos:
+#Set-Up:
+------------
+
+Simply open up index.html in your browser and add your songs in! Make sure that you have the specific file path copied.
+>For Example:  
+>*On *NIX:*  
+> /media/user/path/to/file.mp3  
+>*On Windows:*  
+> file:///c:/Users/path/to/file.acc  
+
+#To Dos:
 ------------
 - Refactor all the ugly(Directives, Factories, etc)
 - Drag Files in to add Songs
@@ -17,7 +27,7 @@ To Dos:
 - Draggable Elements?
 - Read from Dropbox/Google Drive?
 
-Possibly to Use:
+#Possibly to Use:
 ------------
 - [SASS](http://sass-lang.com/)
 - [audio-metadata](https://www.npmjs.com/package/audio-metadata)
